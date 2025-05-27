@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AgoraTokenService {
@@ -24,7 +25,7 @@ class AgoraTokenService {
         channelName: channelName
       );
     } else {
-      print("Erro ao obter token: ${response.body}");
+      debugPrint("Erro ao obter token: ${response.body}");
       return null;
     }
   }
