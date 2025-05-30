@@ -84,7 +84,7 @@ class UserDetails {
   String email;
   String? image;
   String function;
-  int vtr;
+  num vtr;
 
   UserDetails({
     required this.id,

@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:safe_driver_core/models/lideranca.dart';
 import 'package:safe_driver_core/services/agora_token_gen.dart';
 
 class Usuario {
@@ -38,6 +39,15 @@ class Usuario {
     this.lastPosition,
   });
 
+  UserDetails toDetails({String? function}){
+    return UserDetails(
+      id: id!,
+      username: username!,
+      function: function ?? "",
+      email: email!,
+      vtr: vtr!,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
