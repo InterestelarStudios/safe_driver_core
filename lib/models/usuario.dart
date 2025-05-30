@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safe_driver_core/models/lideranca.dart';
+import 'package:safe_driver_core/models/vehicle.dart';
 import 'package:safe_driver_core/services/agora_token_gen.dart';
 
 class Usuario {
@@ -21,6 +22,7 @@ class Usuario {
   AgoraToken? inStream;
   GeoPoint? position;
   Timestamp? lastPosition;
+  Vehicle? vehicle;
 
   Usuario({
     this.id,
@@ -37,6 +39,7 @@ class Usuario {
     this.inStream,
     this.position,
     this.lastPosition,
+    this.vehicle,
   });
 
   UserDetails toDetails({String? function}){
@@ -65,6 +68,7 @@ class Usuario {
       'inStream' : inStream?.toMap(),
       'position': position,
       'lastPosition': lastPosition,
+      'vehicle': vehicle,
     };
   }
 
@@ -83,6 +87,7 @@ class Usuario {
       inCall: map['inCall'] != null ? AgoraToken.fromMap(map['inCall']) : null,
       inStream: map['inStream'] != null ? AgoraToken.fromMap(map['inStream']) : null,
       position: map['position'] != null ? map['position'] as GeoPoint : null,
+      vehicle: map['vehicle'] != null ? Vehicle.fromMap(map['vehicle']) : null,
       lastPosition: map['lastPosition'] != null ? map['lastPosition'] as Timestamp : null,
     );
   }
