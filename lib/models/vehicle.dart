@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safe_driver_core/models/lideranca.dart';
 
 class Vehicle {
@@ -12,8 +13,9 @@ class Vehicle {
   String year;
   String color;
   String placa;
+  Timestamp created;
   UserDetails owner;
-  
+
   Vehicle({
     required this.id,
     required this.type,
@@ -22,6 +24,7 @@ class Vehicle {
     required this.year,
     required this.color,
     required this.placa,
+    required this.created,
     required this.owner,
   });
 
@@ -35,6 +38,7 @@ class Vehicle {
       'year': year,
       'color': color,
       'placa': placa,
+      'created': created,
       'owner': owner.toMap(),
     };
   }
@@ -48,6 +52,7 @@ class Vehicle {
       year: map['year'] as String,
       color: map['color'] as String,
       placa: map['placa'] as String,
+      created: map['created'] as Timestamp,
       owner: UserDetails.fromMap(map['owner'] as Map<String,dynamic>),
     );
   }
