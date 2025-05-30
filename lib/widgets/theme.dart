@@ -59,7 +59,7 @@ ThemeData appTheme(){
     ),
     dividerTheme: DividerThemeData(
       color: Colors.grey[100],
-    )
+    ),
   );
 }
 
@@ -123,6 +123,12 @@ ThemeData darkAppTheme(){
     ),
     dividerTheme: DividerThemeData(
       color: surfaceColor,
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: surfaceColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
     )
   );
 }
