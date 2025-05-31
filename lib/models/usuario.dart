@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safe_driver_core/models/lideranca.dart';
+import 'package:safe_driver_core/models/qru.dart';
 import 'package:safe_driver_core/models/vehicle.dart';
 import 'package:safe_driver_core/services/agora_token_gen.dart';
 
@@ -23,6 +24,7 @@ class Usuario {
   GeoPoint? position;
   Timestamp? lastPosition;
   Vehicle? vehicle;
+  InQruDetails? inQru;
 
   Usuario({
     this.id,
@@ -40,6 +42,7 @@ class Usuario {
     this.position,
     this.lastPosition,
     this.vehicle,
+    this.inQru,
   });
 
   UserDetails toDetails({String? function}){
@@ -69,6 +72,7 @@ class Usuario {
       'position': position,
       'lastPosition': lastPosition,
       'vehicle': vehicle,
+      'inQru': inQru?.toMap(),
     };
   }
 
@@ -89,6 +93,7 @@ class Usuario {
       position: map['position'] != null ? map['position'] as GeoPoint : null,
       vehicle: map['vehicle'] != null ? Vehicle.fromMap(map['vehicle']) : null,
       lastPosition: map['lastPosition'] != null ? map['lastPosition'] as Timestamp : null,
+      inQru: map['inQru'] != null ? InQruDetails.fromMap(map['inQru']) : null,
     );
   }
 

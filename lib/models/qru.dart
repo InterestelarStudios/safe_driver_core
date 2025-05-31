@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:safe_driver_core/models/lideranca.dart';
 import 'package:safe_driver_core/models/usuario.dart';
 
@@ -24,6 +26,8 @@ class QRU {
   Timestamp? created;
   Timestamp? closed;
   String? description;
+  GeoPoint? position;
+  List<FileType>? medias;
 
   QRU({
     this.id,
@@ -37,6 +41,8 @@ class QRU {
     this.created,
     this.closed,
     this.description,
+    this.position,
+    this.medias,
   });
 
 
@@ -53,6 +59,8 @@ class QRU {
       'created': created,
       'closed': closed,
       'description': description,
+      'position': position,
+      'medias': medias!.map((x)=> x.toMap()).toList(),
     };
   }
 
@@ -69,10 +77,82 @@ class QRU {
       created: map['created'] != null ? map['created'] as Timestamp : null,
       closed: map['closed'] != null ? map['closed'] as Timestamp : null,
       description: map['description'] != null ? map['description'] as String : null,
+      position: map['position'] != null ? map['position'] as GeoPoint : null,
+      medias: map['medias'] != null ? map['medias'].map((e)=> FileType.fromMap(e)).toList() as List<FileType>: null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory QRU.fromJson(String source) => QRU.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class FileType {
+  String url;
+  String type;
+
+  FileType({
+    required this.url,
+    required this.type,
+  });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'url': url,
+      'type': type,
+    };
+  }
+
+  factory FileType.fromMap(Map<String, dynamic> map) {
+    return FileType(
+      url: map['url'] as String,
+      type: map['type'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory FileType.fromJson(String source) => FileType.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class InQruDetails {
+  /*
+  roles":
+    -owner: Criardor da QRU
+    -envolved: Disposto a Ajudar na QRU
+  */
+  String qruId;
+  UserDetails from;
+  String role;
+  String description;
+  
+  InQruDetails({
+    required this.qruId,
+    required this.from,
+    required this.role,
+    required this.description,
+  });
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'qruId': qruId,
+      'from': from.toMap(),
+      'role': role,
+      'description': description,
+    };
+  }
+
+  factory InQruDetails.fromMap(Map<String, dynamic> map) {
+    return InQruDetails(
+      qruId: map['qruId'] as String,
+      from: UserDetails.fromMap(map['from'] as Map<String,dynamic>),
+      role: map['role'] as String,
+      description: map['description'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory InQruDetails.fromJson(String source) => InQruDetails.fromMap(json.decode(source) as Map<String, dynamic>);
 }
