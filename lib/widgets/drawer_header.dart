@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:safe_driver_core/models/usuario.dart';
 
-class DrawerHeader extends StatelessWidget {
-  const DrawerHeader({super.key, required this.usuario, required this.onPressed});
+class CustomDrawerHeader extends StatelessWidget {
+  const CustomDrawerHeader({super.key, required this.usuario, required this.onPressed});
   final Usuario usuario;
   final ValueChanged<Usuario> onPressed;
 
