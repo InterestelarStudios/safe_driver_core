@@ -8,3 +8,4 @@ export "services/agora_token_gen.dart";
 export 'widgets/auth_screen.dart';
 export 'widgets/theme.dart';
 export 'models/vehicle.dart';
+export 'widgets/drawer_header.dart';

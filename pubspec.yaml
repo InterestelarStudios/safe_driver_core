@@ -18,6 +18,7 @@ dependencies:
   intl:
   agora_rtc_engine:
   ionicons:
+  cached_network_image:
 
 dev_dependencies:
   flutter_test:
