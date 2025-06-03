@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Lideranca {
 
@@ -34,7 +35,6 @@ class Lideranca {
     this.created,
     this.code,
   });
-
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -72,6 +72,11 @@ class Lideranca {
     );
   }
 
+  bool isAdm(){
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    return adms!.contains(uid);
+  }
+
   String toJson() => json.encode(toMap());
 
   factory Lideranca.fromJson(String source) => Lideranca.fromMap(json.decode(source) as Map<String, dynamic>);
@@ -94,7 +99,6 @@ class UserDetails {
     this.image,
     required this.vtr,
   });
-
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
