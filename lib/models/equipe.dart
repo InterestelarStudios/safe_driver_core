@@ -56,6 +56,15 @@ class Equipe {
     );
   }
 
+  EquipeDetails toDetails(){
+    return EquipeDetails(
+      id: id,
+      name: name,
+      image: image,
+      lideranca: lideranca!.id,
+    );
+  }
+
   String toJson() => json.encode(toMap());
 
   factory Equipe.fromJson(String source) => Equipe.fromMap(json.decode(source) as Map<String, dynamic>);
