@@ -46,7 +46,7 @@ class Statement {
       creator: UserDetails.fromMap(map['creator'] as Map<String,dynamic>),
       created: map['created'] as Timestamp,
       destinations: map['destinations'] as List,
-      destinationsDetails: map['destinations'].map<EquipeDetails>((e)=> EquipeDetails.fromMap(e)).toList()
+      destinationsDetails: map['destinationsDetails'].map<EquipeDetails>((e)=> EquipeDetails.fromMap(e)).toList()
     );
   }
 
