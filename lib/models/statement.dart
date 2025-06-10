@@ -12,6 +12,7 @@ class Statement {
   String messege;
   LiderancaDetails lideranca;
   List destinations;
+  List<EquipeDetails> destinationsDetails;
   UserDetails creator;
   Timestamp created;
 
@@ -22,6 +23,7 @@ class Statement {
     required this.creator,
     required this.created,
     required this.destinations,
+    required this.destinationsDetails,
   });
 
   Map<String, dynamic> toMap() {
@@ -32,6 +34,7 @@ class Statement {
       'creator': creator.toMap(),
       'created': created,
       'destinations': destinations,
+      'destinationsDetails': destinationsDetails.map((x)=> x.toMap()).toList()
     };
   }
 
@@ -43,6 +46,7 @@ class Statement {
       creator: UserDetails.fromMap(map['creator'] as Map<String,dynamic>),
       created: map['created'] as Timestamp,
       destinations: map['destinations'] as List,
+      destinationsDetails: map['destinations'].map<EquipeDetails>((e)=> EquipeDetails.fromMap(e)).toList()
     );
   }
 
