@@ -11,6 +11,7 @@ class Statement {
   String id;
   String messege;
   LiderancaDetails lideranca;
+  List destinations;
   UserDetails creator;
   Timestamp created;
 
@@ -20,6 +21,7 @@ class Statement {
     required this.lideranca,
     required this.creator,
     required this.created,
+    required this.destinations,
   });
 
   Map<String, dynamic> toMap() {
@@ -29,6 +31,7 @@ class Statement {
       'lideranca': lideranca.toMap(),
       'creator': creator.toMap(),
       'created': created,
+      'destinations': destinations,
     };
   }
 
@@ -39,6 +42,7 @@ class Statement {
       lideranca: LiderancaDetails.fromMap(map['lideranca'] as Map<String,dynamic>),
       creator: UserDetails.fromMap(map['creator'] as Map<String,dynamic>),
       created: map['created'] as Timestamp,
+      destinations: map['destinations'] as List,
     );
   }
 
