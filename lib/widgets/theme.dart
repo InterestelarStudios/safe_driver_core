@@ -129,6 +129,9 @@ ThemeData darkAppTheme(){
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
+    ),
+    listTileTheme: ListTileThemeData(
+      selectedColor: primaryColor
     )
   );
 }
