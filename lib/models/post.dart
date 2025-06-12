@@ -50,7 +50,7 @@ class SocialPost {
       creator: UserDetails.fromMap(map['creator'] as Map<String,dynamic>),
       lideranca: LiderancaDetails.fromMap(map['lideranca'] as Map<String,dynamic>),
       content: map['content'] as String,
-      files: List<FileType>.from((map['files'] as List<int>).map<FileType>((x) => FileType.fromMap(x as Map<String,dynamic>),),),
+      files: map['files'].map<FileType>((e)=> FileType.fromMap(e)).toList() as List<FileType>,
       date: map['date'] as Timestamp,
       edited: map['edited'] as bool,
       likes: map['likes'] as List,
