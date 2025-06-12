@@ -53,7 +53,7 @@ class SocialPost {
       files: List<FileType>.from((map['files'] as List<int>).map<FileType>((x) => FileType.fromMap(x as Map<String,dynamic>),),),
       date: map['date'] as Timestamp,
       edited: map['edited'] as bool,
-      likes: List.from((map['likes'] as List)),
+      likes: map['likes'] as List,
       comments: map['comments'] as int,
     );
   }
