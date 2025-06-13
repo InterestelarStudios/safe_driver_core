@@ -10,4 +10,5 @@ export 'widgets/auth_screen.dart';
 export 'widgets/theme.dart';
 export 'models/vehicle.dart';
 export 'models/statement.dart';
+export 'models/comment.dart';
 export 'widgets/drawer_header.dart';
