@@ -27,6 +27,7 @@ class QRU {
   Timestamp? closed;
   String? description;
   GeoPoint? position;
+  String? address;
   List<FileType>? medias;
 
   QRU({
@@ -43,6 +44,7 @@ class QRU {
     this.description,
     this.position,
     this.medias,
+    this.address,
   });
 
 
@@ -60,6 +62,7 @@ class QRU {
       'closed': closed,
       'description': description,
       'position': position,
+      'address': address,
       'medias': medias!.map((x)=> x.toMap()).toList(),
     };
   }
@@ -77,6 +80,7 @@ class QRU {
       created: map['created'] != null ? map['created'] as Timestamp : null,
       closed: map['closed'] != null ? map['closed'] as Timestamp : null,
       description: map['description'] != null ? map['description'] as String : null,
+      address: map['address'] != null ? map['address'] as String : null,
       position: map['position'] != null ? map['position'] as GeoPoint : null,
       medias: map['medias'] != null ?  map['medias'].map<FileType>((e)=> FileType.fromMap(e)).toList() as List<FileType>: null,
     );
