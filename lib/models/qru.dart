@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 import 'package:safe_driver_core/models/lideranca.dart';
 import 'package:safe_driver_core/models/usuario.dart';
@@ -84,6 +85,32 @@ class QRU {
       position: map['position'] != null ? map['position'] as GeoPoint : null,
       medias: map['medias'] != null ?  map['medias'].map<FileType>((e)=> FileType.fromMap(e)).toList() as List<FileType>: null,
     );
+  }
+
+  String levelTranslated(){
+    switch (level) {
+      case 0:
+        return "Leve";
+      case 1:
+        return "Urgência";
+      case 2:
+        return "Risco de Vida";
+      default:
+        return "";
+    }
+  }
+
+  Color levelColor(){
+    switch (level) {
+      case 0:
+        return Colors.yellowAccent[700]!;
+      case 1:
+        return Colors.orangeAccent[700]!;
+      case 2:
+        return Colors.redAccent[700]!;
+      default:
+        return Colors.grey;
+    }
   }
 
   String toJson() => json.encode(toMap());
