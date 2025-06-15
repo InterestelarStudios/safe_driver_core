@@ -90,6 +90,7 @@ class UserDetails {
   String? image;
   String function;
   num vtr;
+  String? notificationToken;
 
   UserDetails({
     required this.id,
@@ -98,6 +99,7 @@ class UserDetails {
     required this.email,
     this.image,
     required this.vtr,
+    this.notificationToken,
   });
 
   Map<String, dynamic> toMap() {
@@ -108,6 +110,7 @@ class UserDetails {
       'email': email,
       'image': image,
       'vtr': vtr,
+      'notificationToken' : notificationToken,
     };
   }
 
@@ -119,6 +122,7 @@ class UserDetails {
       email: map['email'] as String,
       image: map['image'] != null ? map['image'] as String : null,
       vtr: map['vtr'] as int,
+      notificationToken: map['notificationToken'] != null ? map['notificationToken'] as String : null,
     );
   }
 
