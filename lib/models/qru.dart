@@ -75,7 +75,7 @@ class QRU {
       status: map['status'] != null ? map['status'] as String : null,
       level: map['level'] != null ? map['level'] as int : null,
       involveds: map['involveds'] != null ? map['involveds'] as List : null,
-      involvedsDetails: map['involvedsDetails'].isNotEmpty ? map['involvedsDetails'].map((e)=> UserDetails.fromMap(e)).toList() : [],
+      involvedsDetails: map['involvedsDetails'].isNotEmpty ? map['involvedsDetails'].map<UserDetails>((e)=> UserDetails.fromMap(e)).toList() : [],
       equipe: map['equipe'] != null ? EquipeDetails.fromMap(map['equipe']) : null,
       lideranca: map['lideranca'] != null ? LiderancaDetails.fromMap(map['lideranca']) : null,
       created: map['created'] != null ? map['created'] as Timestamp : null,
