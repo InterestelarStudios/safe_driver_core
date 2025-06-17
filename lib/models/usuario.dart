@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:safe_driver_core/models/lideranca.dart';
 import 'package:safe_driver_core/models/qru.dart';
 import 'package:safe_driver_core/models/vehicle.dart';
@@ -25,6 +26,7 @@ class Usuario {
   Timestamp? lastPosition;
   Vehicle? vehicle;
   InQruDetails? inQru;
+  LegalData? legalData;
 
   Usuario({
     this.id,
@@ -43,6 +45,7 @@ class Usuario {
     this.lastPosition,
     this.vehicle,
     this.inQru,
+    this.legalData,
   });
 
   UserDetails toDetails({String? function}){
@@ -73,6 +76,7 @@ class Usuario {
       'lastPosition': lastPosition,
       'vehicle': vehicle,
       'inQru': inQru?.toMap(),
+      'legalData': legalData?.toMap(),
     };
   }
 
@@ -94,6 +98,7 @@ class Usuario {
       vehicle: map['vehicle'] != null ? Vehicle.fromMap(map['vehicle']) : null,
       lastPosition: map['lastPosition'] != null ? map['lastPosition'] as Timestamp : null,
       inQru: map['inQru'] != null ? InQruDetails.fromMap(map['inQru']) : null,
+      legalData: map['legalData'] != null ? LegalData.fromMap(map['legalData']) : null,
     );
   }
 
@@ -175,4 +180,135 @@ class EquipeDetails {
   String toJson() => json.encode(toMap());
 
   factory EquipeDetails.fromJson(String source) => EquipeDetails.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+
+class LegalData {
+
+  String name;
+  String? rg;
+  String cpf;
+  String cnh;
+  BirthDate birth;
+  Address address;
+
+  LegalData({
+    required this.name,
+    this.rg,
+    required this.cpf,
+    required this.cnh,
+    required this.birth,
+    required this.address,
+  });
+  
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'rg': rg,
+      'cpf': cpf,
+      'cnh': cnh,
+      'birth': birth.toMap(),
+      'address': address.toMap(),
+    };
+  }
+
+  factory LegalData.fromMap(Map<String, dynamic> map) {
+    return LegalData(
+      name: map['name'] as String,
+      rg: map['rg'] != null ? map['rg'] as String : null,
+      cpf: map['cpf'] as String,
+      cnh: map['cnh'] as String,
+      birth: BirthDate.fromMap(map['birth'] as Map<String,dynamic>),
+      address: Address.fromMap(map['address'] as Map<String,dynamic>),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory LegalData.fromJson(String source) => LegalData.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class Address {
+
+  String street;
+  String number;
+  String district;
+  String cep;
+  String city;
+  String uf;
+  String? complement;
+
+  Address({
+    required this.street,
+    required this.number,
+    required this.district,
+    required this.cep,
+    required this.city,
+    required this.uf,
+    this.complement,
+  });
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'street': street,
+      'number': number,
+      'district': district,
+      'cep': cep,
+      'city': city,
+      'uf': uf,
+      'complement': complement,
+    };
+  }
+
+  factory Address.fromMap(Map<String, dynamic> map) {
+    return Address(
+      street: map['street'] as String,
+      number: map['number'] as String,
+      district: map['district'] as String,
+      cep: map['cep'] as String,
+      city: map['city'] as String,
+      uf: map['uf'] as String,
+      complement: map['complement'] != null ? map['complement'] as String : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Address.fromJson(String source) => Address.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class BirthDate {
+
+  String day;
+  String month;
+  String year;
+
+  BirthDate({
+    required this.day,
+    required this.month,
+    required this.year,
+  });
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'day': day,
+      'month': month,
+      'year': year,
+    };
+  }
+
+  factory BirthDate.fromMap(Map<String, dynamic> map) {
+    return BirthDate(
+      day: map['day'] as String,
+      month: map['month'] as String,
+      year: map['year'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory BirthDate.fromJson(String source) => BirthDate.fromMap(json.decode(source) as Map<String, dynamic>);
 }
