@@ -189,6 +189,7 @@ class LegalData {
   String? rg;
   String cpf;
   String cnh;
+  String phone;
   BirthDate birth;
   Address address;
 
@@ -197,6 +198,7 @@ class LegalData {
     this.rg,
     required this.cpf,
     required this.cnh,
+    required this.phone,
     required this.birth,
     required this.address,
   });
@@ -208,6 +210,7 @@ class LegalData {
       'rg': rg,
       'cpf': cpf,
       'cnh': cnh,
+      'phone': phone,
       'birth': birth.toMap(),
       'address': address.toMap(),
     };
@@ -219,6 +222,7 @@ class LegalData {
       rg: map['rg'] != null ? map['rg'] as String : null,
       cpf: map['cpf'] as String,
       cnh: map['cnh'] as String,
+      phone: map['phone'] as String,
       birth: BirthDate.fromMap(map['birth'] as Map<String,dynamic>),
       address: Address.fromMap(map['address'] as Map<String,dynamic>),
     );
