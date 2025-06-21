@@ -12,3 +12,5 @@ export 'models/vehicle.dart';
 export 'models/statement.dart';
 export 'models/comment.dart';
 export 'widgets/drawer_header.dart';
+export 'widgets/pick_value_list.dart';
+export 'services/upload_files/firebase_upload_files.dart';
