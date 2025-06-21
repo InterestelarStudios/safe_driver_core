@@ -3,18 +3,23 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:safe_driver_core/models/product.dart';
+import 'package:safe_driver_core/models/usuario.dart';
+
 class Partner {
 
   String id;
   String name;
   String category;
   List partners;
+  List<LiderancaDetails> partnersDetails;
   List adms;
   GeoPoint geoPoint;
   String address;
   List images;
   String? logo;
   String? description;
+  List<ProductPartner> products;
   Timestamp created;
 
   Partner({
@@ -22,13 +27,15 @@ class Partner {
     required this.name,
     required this.category,
     required this.partners,
+    required this.partnersDetails,
     required this.adms,
     required this.geoPoint,
     required this.address,
     required this.images,
-    required this.created,
     this.logo,
     this.description,
+    required this.products,
+    required this.created,
   });
 
 
@@ -38,12 +45,15 @@ class Partner {
       'name': name,
       'category': category,
       'partners': partners,
+      'partnersDetails': partnersDetails.map((x) => x.toMap()).toList(),
       'adms': adms,
       'geoPoint': geoPoint,
       'address': address,
-      'logo': logo,
       'images': images,
+      'logo': logo,
       'description': description,
+      'products': products.map((x) => x.toMap()).toList(),
+      'created': created,
     };
   }
 
@@ -53,12 +63,14 @@ class Partner {
       name: map['name'] as String,
       category: map['category'] as String,
       partners: List.from((map['partners'] as List)),
+      partnersDetails: List<LiderancaDetails>.from((map['partnersDetails'] as List<int>).map<LiderancaDetails>((x) => LiderancaDetails.fromMap(x as Map<String,dynamic>),),),
       adms: List.from((map['adms'] as List)),
       geoPoint: map['geoPoint'] as GeoPoint,
       address: map['address'] as String,
-      logo: map['logo'] != null ? map['logo'] as String : null,
       images: List.from((map['images'] as List)),
+      logo: map['logo'] != null ? map['logo'] as String : null,
       description: map['description'] != null ? map['description'] as String : null,
+      products: List<ProductPartner>.from((map['products'] as List<int>).map<ProductPartner>((x) => ProductPartner.fromMap(x as Map<String,dynamic>),),),
       created: map['created'] as Timestamp,
     );
   }
