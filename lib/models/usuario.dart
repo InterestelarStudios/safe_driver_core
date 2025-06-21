@@ -27,6 +27,7 @@ class Usuario {
   Vehicle? vehicle;
   InQruDetails? inQru;
   LegalData? legalData;
+  MedicalData? medicalData;
 
   Usuario({
     this.id,
@@ -46,6 +47,7 @@ class Usuario {
     this.vehicle,
     this.inQru,
     this.legalData,
+    this.medicalData,
   });
 
   UserDetails toDetails({String? function}){
@@ -77,6 +79,7 @@ class Usuario {
       'vehicle': vehicle,
       'inQru': inQru?.toMap(),
       'legalData': legalData?.toMap(),
+      'medicalData': medicalData?.toMap(),
     };
   }
 
@@ -99,6 +102,7 @@ class Usuario {
       lastPosition: map['lastPosition'] != null ? map['lastPosition'] as Timestamp : null,
       inQru: map['inQru'] != null ? InQruDetails.fromMap(map['inQru']) : null,
       legalData: map['legalData'] != null ? LegalData.fromMap(map['legalData']) : null,
+      medicalData: map['medicalData'] != null ? MedicalData.fromMap(map['medicalData']) : null,
     );
   }
 
@@ -315,4 +319,33 @@ class BirthDate {
   String toJson() => json.encode(toMap());
 
   factory BirthDate.fromJson(String source) => BirthDate.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class MedicalData {
+
+  String bloodType;
+  List allergy;
+
+  MedicalData({
+    required this.bloodType,
+    required this.allergy,
+  });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'bloodType': bloodType,
+      'allergy': allergy,
+    };
+  }
+
+  factory MedicalData.fromMap(Map<String, dynamic> map) {
+    return MedicalData(
+      bloodType: map['bloodType'] as String,
+      allergy: List.from((map['allergy'] as List)),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory MedicalData.fromJson(String source) => MedicalData.fromMap(json.decode(source) as Map<String, dynamic>);
 }
