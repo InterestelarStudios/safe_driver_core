@@ -14,3 +14,6 @@ export 'models/comment.dart';
 export 'widgets/drawer_header.dart';
 export 'widgets/pick_value_list.dart';
 export 'services/upload_files/firebase_upload_files.dart';
+export 'services/geolocation/geoservices.dart';
+export 'services/geolocation/get_maps_data.dart';
+export 'models/danger_area.dart';

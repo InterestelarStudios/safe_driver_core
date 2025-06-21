@@ -19,6 +19,9 @@ dependencies:
   agora_rtc_engine:
   ionicons:
   cached_network_image:
+  geocoding:
+  geolocator:
+  google_maps_flutter: 
 
 dev_dependencies:
   flutter_test:
