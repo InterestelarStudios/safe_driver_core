@@ -28,6 +28,7 @@ class Usuario {
   InQruDetails? inQru;
   LegalData? legalData;
   MedicalData? medicalData;
+  Plan? plan;
 
   Usuario({
     this.id,
@@ -48,6 +49,7 @@ class Usuario {
     this.inQru,
     this.legalData,
     this.medicalData,
+    this.plan,
   });
 
   UserDetails toDetails({String? function}){
@@ -80,6 +82,7 @@ class Usuario {
       'inQru': inQru?.toMap(),
       'legalData': legalData?.toMap(),
       'medicalData': medicalData?.toMap(),
+      'plan' : plan?.toMap(),
     };
   }
 
@@ -103,7 +106,24 @@ class Usuario {
       inQru: map['inQru'] != null ? InQruDetails.fromMap(map['inQru']) : null,
       legalData: map['legalData'] != null ? LegalData.fromMap(map['legalData']) : null,
       medicalData: map['medicalData'] != null ? MedicalData.fromMap(map['medicalData']) : null,
+      plan: map['plan'] != null ? Plan.fromMap(map['plan']) : null,
     );
+  }
+
+  bool isProfessional(){
+    if(plan == null){
+      return false;
+    } else {
+      if(plan!.name == "Gratuito"){
+        return false;
+      } else {
+        if(Timestamp.now().toDate().isBefore(plan!.dueDate.toDate().add(const Duration(days: 3)))){
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
   }
 
   String toJson() => json.encode(toMap());
@@ -349,3 +369,42 @@ class MedicalData {
 
   factory MedicalData.fromJson(String source) => MedicalData.fromMap(json.decode(source) as Map<String, dynamic>);
 }
+
+class Plan {
+
+  String name;
+  Timestamp dueDate;
+  num price;
+  
+  Plan({
+    required this.name,
+    required this.dueDate,
+    required this.price,
+  });
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'dueDate': dueDate,
+      'price': price,
+    };
+  }
+
+  factory Plan.fromMap(Map<String, dynamic> map) {
+    return Plan(
+      name: map['name'] as String,
+      dueDate: map['dueDate'] as Timestamp,
+      price: map['price'] as num,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Plan.fromJson(String source) => Plan.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+List<Plan> planos = [
+  Plan(name: "Gratuito", dueDate: Timestamp.now(), price: 0),
+  Plan(name: "Profissional", dueDate: Timestamp.now(), price: 19.90),
+];
