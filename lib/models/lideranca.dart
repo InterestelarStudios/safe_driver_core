@@ -19,6 +19,7 @@ class Lideranca {
   int? teams;
   Timestamp? created;
   String? code;
+  LiderRequeriments? liderRequeriments;
   
   Lideranca({
     this.id,
@@ -34,6 +35,7 @@ class Lideranca {
     this.teams,
     this.created,
     this.code,
+    this.liderRequeriments
   });
 
   Map<String, dynamic> toMap() {
@@ -46,11 +48,12 @@ class Lideranca {
       'businessName': businessName,
       'cnpj': cnpj,
       'adms': adms,
-      'admsDetails': admsDetails!.map((x) => x.toMap()).toList(),
+      'admsDetails': admsDetails?.map((x) => x.toMap()).toList(),
       'members': members,
       'teams': teams,
       'created': created,
       'code': code,
+      'liderRequeriments': liderRequeriments?.toMap(),
     };
   }
 
@@ -69,6 +72,7 @@ class Lideranca {
       teams: map['teams'] != null ? map['teams'] as int : null,
       created: map['created'] != null ? map['created'] as Timestamp : null,
       code: map['code'] != null ? map['code'] as String : null,
+      liderRequeriments: map['liderRequeriments'] != null ? LiderRequeriments.fromMap(map['liderRequeriments']) : null,
     );
   }
 
@@ -129,4 +133,42 @@ class UserDetails {
   String toJson() => json.encode(toMap());
 
   factory UserDetails.fromJson(String source) => UserDetails.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class LiderRequeriments {
+
+  bool profileImage;
+  bool identification;
+  bool medicalData;
+  bool vehicle;
+  
+  LiderRequeriments({
+    required this.profileImage,
+    required this.identification,
+    required this.medicalData,
+    required this.vehicle,
+  });
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'profileImage': profileImage,
+      'identification': identification,
+      'medicalData': medicalData,
+      'vehicle': vehicle,
+    };
+  }
+
+  factory LiderRequeriments.fromMap(Map<String, dynamic> map) {
+    return LiderRequeriments(
+      profileImage: map['profileImage'] as bool,
+      identification: map['identification'] as bool,
+      medicalData: map['medicalData'] as bool,
+      vehicle: map['vehicle'] as bool,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory LiderRequeriments.fromJson(String source) => LiderRequeriments.fromMap(json.decode(source) as Map<String, dynamic>);
 }
