@@ -58,7 +58,7 @@ class Usuario {
       username: username!,
       function: function ?? "",
       email: email!,
-      vtr: vtr!,
+      vtr: vtr ?? num.parse("0"),
     );
   }
 
