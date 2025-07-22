@@ -29,6 +29,7 @@ class Usuario {
   LegalData? legalData;
   MedicalData? medicalData;
   Plan? plan;
+  String? serviceType; //passenger: Transporte de Passageiros. deliveryPackage: Entrega de Pacotes. deliveryFood: Entrega de Alimentos.
 
   Usuario({
     this.id,
@@ -50,6 +51,7 @@ class Usuario {
     this.legalData,
     this.medicalData,
     this.plan,
+    this.serviceType
   });
 
   UserDetails toDetails({String? function}){
@@ -83,6 +85,7 @@ class Usuario {
       'legalData': legalData?.toMap(),
       'medicalData': medicalData?.toMap(),
       'plan' : plan?.toMap(),
+      'serviceType': serviceType,
     };
   }
 
@@ -107,6 +110,7 @@ class Usuario {
       legalData: map['legalData'] != null ? LegalData.fromMap(map['legalData']) : null,
       medicalData: map['medicalData'] != null ? MedicalData.fromMap(map['medicalData']) : null,
       plan: map['plan'] != null ? Plan.fromMap(map['plan']) : null,
+      serviceType: map['serviceType'] != null ? map['serviceType'] as String : null,
     );
   }
 
