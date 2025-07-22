@@ -132,6 +132,11 @@ ThemeData darkAppTheme(){
     ),
     listTileTheme: ListTileThemeData(
       selectedColor: primaryColor
+    ),
+    dividerColor: Colors.white24,
+    dialogTheme: DialogThemeData(
+      backgroundColor: surfaceColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))
     )
   );
 }
