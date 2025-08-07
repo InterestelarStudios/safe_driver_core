@@ -61,6 +61,7 @@ class Usuario {
       function: function ?? equipe!.name!,
       email: email!,
       vtr: vtr ?? num.parse("0"),
+      image: image,
     );
   }
 
