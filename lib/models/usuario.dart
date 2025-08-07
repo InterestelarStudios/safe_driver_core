@@ -58,7 +58,7 @@ class Usuario {
     return UserDetails(
       id: id!,
       username: username!,
-      function: function ?? "",
+      function: function ?? equipe!.name!,
       email: email!,
       vtr: vtr ?? num.parse("0"),
     );
