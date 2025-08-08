@@ -30,6 +30,10 @@ class Usuario {
   MedicalData? medicalData;
   Plan? plan;
   String? serviceType; //passenger: Transporte de Passageiros. deliveryPackage: Entrega de Pacotes. deliveryFood: Entrega de Alimentos.
+  String? status;
+  bool? showAddress;
+  List<PhoneData>? emergencyContacts;
+  List<PhoneData>? trackers;
 
   Usuario({
     this.id,
@@ -51,7 +55,11 @@ class Usuario {
     this.legalData,
     this.medicalData,
     this.plan,
-    this.serviceType
+    this.serviceType,
+    this.status,
+    this.showAddress,
+    this.emergencyContacts,
+    this.trackers,
   });
 
   UserDetails toDetails({String? function}){
@@ -87,6 +95,10 @@ class Usuario {
       'medicalData': medicalData?.toMap(),
       'plan' : plan?.toMap(),
       'serviceType': serviceType,
+      'status': status,
+      'showAddress': showAddress,
+      'emergencyContacts': emergencyContacts,
+      'trackers': trackers,
     };
   }
 
@@ -112,6 +124,10 @@ class Usuario {
       medicalData: map['medicalData'] != null ? MedicalData.fromMap(map['medicalData']) : null,
       plan: map['plan'] != null ? Plan.fromMap(map['plan']) : null,
       serviceType: map['serviceType'] != null ? map['serviceType'] as String : null,
+      status: map['status'] != null ? map['status'] as String : null,
+      showAddress: map['showAddress'] != null ? map['showAddress'] as bool : null,
+      emergencyContacts: map['emergencyContacts'] != null ? map['emergencyContacts'].map<PhoneData>((e)=> PhoneData.fromMap(e)).toList() : [],
+      trackers: map['trackers'] != null ? map['trackers'].map<PhoneData>((e)=> PhoneData.fromMap(e)).toList() : [],
     );
   }
 
@@ -413,3 +429,33 @@ List<Plan> planos = [
   Plan(name: "Gratuito", dueDate: Timestamp.now(), price: 0),
   Plan(name: "Profissional", dueDate: Timestamp.now(), price: 19.90),
 ];
+
+class PhoneData {
+
+  String number;
+  String name;
+  
+  PhoneData({
+    required this.number,
+    required this.name,
+  });
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'number': number,
+      'name': name,
+    };
+  }
+
+  factory PhoneData.fromMap(Map<String, dynamic> map) {
+    return PhoneData(
+      number: map['number'] as String,
+      name: map['name'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory PhoneData.fromJson(String source) => PhoneData.fromMap(json.decode(source) as Map<String, dynamic>);
+}
