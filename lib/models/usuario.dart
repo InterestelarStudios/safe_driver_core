@@ -97,8 +97,8 @@ class Usuario {
       'serviceType': serviceType,
       'status': status,
       'showAddress': showAddress,
-      'emergencyContacts': emergencyContacts,
-      'trackers': trackers,
+      'emergencyContacts': emergencyContacts!.map((e)=> e.toMap()).toList(),
+      'trackers': trackers!.map((e)=> e.toMap()).toList(),
     };
   }
 
