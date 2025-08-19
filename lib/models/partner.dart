@@ -22,6 +22,7 @@ class Partner {
   List<ProductPartner> products;
   Timestamp created;
   String? cnpj;
+  List<PhoneData> contacts;
 
   Partner({
     required this.id,
@@ -38,6 +39,7 @@ class Partner {
     required this.products,
     required this.created,
     this.cnpj,
+    required this.contacts,
   });
 
 
@@ -56,7 +58,8 @@ class Partner {
       'description': description,
       'products': products.map((x) => x.toMap()).toList(),
       'created': created,
-      'cnpj' : cnpj
+      'cnpj' : cnpj,
+      'contacts': contacts.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -76,6 +79,7 @@ class Partner {
       products: List<ProductPartner>.from((map['products'] as List<int>).map<ProductPartner>((x) => ProductPartner.fromMap(x as Map<String,dynamic>),),),
       created: map['created'] as Timestamp,
       cnpj: map['cnpj'] != null ? map['cnpj'] as String : null,
+      contacts: List<PhoneData>.from((map['contacts'] as List<int>).map<PhoneData>((x) => PhoneData.fromMap(x as Map<String,dynamic>),),),
     );
   }
 
