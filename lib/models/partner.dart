@@ -69,17 +69,17 @@ class Partner {
       name: map['name'] as String,
       category: map['category'] as String,
       partners: List.from((map['partners'] as List)),
-      partnersDetails: List<LiderancaDetails>.from((map['partnersDetails'] as List<int>).map<LiderancaDetails>((x) => LiderancaDetails.fromMap(x as Map<String,dynamic>),),),
+      partnersDetails: map['partnersDetails'].map<LiderancaDetails>((value)=> LiderancaDetails.fromMap(value)).toList(),
       adms: List.from((map['adms'] as List)),
       geoPoint: map['geoPoint'] as GeoPoint,
       address: map['address'] as String,
       images: List.from((map['images'] as List)),
       logo: map['logo'] != null ? map['logo'] as String : null,
       description: map['description'] != null ? map['description'] as String : null,
-      products: List<ProductPartner>.from((map['products'] as List<int>).map<ProductPartner>((x) => ProductPartner.fromMap(x as Map<String,dynamic>),),),
+      products: map['products'].map<ProductPartner>((value)=> ProductPartner.fromMap(value)).toList(),
       created: map['created'] as Timestamp,
       cnpj: map['cnpj'] != null ? map['cnpj'] as String : null,
-      contacts: List<PhoneData>.from((map['contacts'] as List<int>).map<PhoneData>((x) => PhoneData.fromMap(x as Map<String,dynamic>),),),
+      contacts: map['contacts'].map<PhoneData>((value)=> PhoneData.fromMap(value)).toList(),
     );
   }
 
