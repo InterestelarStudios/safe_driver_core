@@ -18,7 +18,7 @@ ThemeData appTheme(){
       backgroundColor: surfaceColor,
       shape: const RoundedRectangleBorder()
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: const Color.fromARGB(255, 250, 250, 250),//surfaceColor,
       elevation: 0,
       shadowColor: Colors.grey[100],
@@ -82,7 +82,7 @@ ThemeData darkAppTheme(){
       backgroundColor: deepColor,
       shape: const RoundedRectangleBorder()
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: surfaceColor,
       elevation: 0,
       shadowColor: Colors.grey[100],
