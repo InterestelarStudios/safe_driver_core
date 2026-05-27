@@ -34,6 +34,7 @@ class Usuario {
   bool? showAddress;
   List<PhoneData>? emergencyContacts;
   List<PhoneData>? trackers;
+  String? color;
 
   Usuario({
     this.id,
@@ -60,6 +61,7 @@ class Usuario {
     this.showAddress,
     this.emergencyContacts,
     this.trackers,
+    this.color,
   });
 
   UserDetails toDetails({String? function}){
@@ -99,6 +101,7 @@ class Usuario {
       'showAddress': showAddress,
       'emergencyContacts': emergencyContacts!.map((e)=> e.toMap()).toList(),
       'trackers': trackers!.map((e)=> e.toMap()).toList(),
+      'color': color,
     };
   }
 
@@ -128,6 +131,7 @@ class Usuario {
       showAddress: map['showAddress'] != null ? map['showAddress'] as bool : null,
       emergencyContacts: map['emergencyContacts'] != null ? map['emergencyContacts'].map<PhoneData>((e)=> PhoneData.fromMap(e)).toList() : [],
       trackers: map['trackers'] != null ? map['trackers'].map<PhoneData>((e)=> PhoneData.fromMap(e)).toList() : [],
+      color: map['color'] != null ? map['color'] as String : null,
     );
   }
 
