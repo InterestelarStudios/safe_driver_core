@@ -20,6 +20,7 @@ class Lideranca {
   Timestamp? created;
   String? code;
   LiderRequeriments? liderRequeriments;
+  String? mpToken;
   
   Lideranca({
     this.id,
@@ -35,7 +36,8 @@ class Lideranca {
     this.teams,
     this.created,
     this.code,
-    this.liderRequeriments
+    this.liderRequeriments,
+    this.mpToken,
   });
 
   Map<String, dynamic> toMap() {
@@ -54,6 +56,7 @@ class Lideranca {
       'created': created,
       'code': code,
       'liderRequeriments': liderRequeriments?.toMap(),
+      'mpToken': mpToken,
     };
   }
 
@@ -73,6 +76,7 @@ class Lideranca {
       created: map['created'] != null ? map['created'] as Timestamp : null,
       code: map['code'] != null ? map['code'] as String : null,
       liderRequeriments: map['liderRequeriments'] != null ? LiderRequeriments.fromMap(map['liderRequeriments']) : null,
+      mpToken: map['mpToken'] != null ? map['mpToken'] as String : null, 
     );
   }
 
