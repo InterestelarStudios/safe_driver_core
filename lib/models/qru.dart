@@ -30,6 +30,7 @@ class QRU {
   GeoPoint? position;
   String? address;
   List<FileType>? medias;
+  QruLiveKit? liveStream;
 
   QRU({
     this.id,
@@ -46,6 +47,7 @@ class QRU {
     this.position,
     this.medias,
     this.address,
+    this.liveStream,
   });
 
 
@@ -65,6 +67,7 @@ class QRU {
       'position': position,
       'address': address,
       'medias': medias!.map((x)=> x.toMap()).toList(),
+      'liveStream' : liveStream?.toMap(),
     };
   }
 
@@ -84,6 +87,7 @@ class QRU {
       address: map['address'] != null ? map['address'] as String : null,
       position: map['position'] != null ? map['position'] as GeoPoint : null,
       medias: map['medias'] != null ?  map['medias'].map<FileType>((e)=> FileType.fromMap(e)).toList() as List<FileType>: null,
+      liveStream: map['liveStream'] != null ? QruLiveKit.fromMap(map['liveStream']) : null,
     );
   }
 
@@ -186,4 +190,42 @@ class InQruDetails {
   String toJson() => json.encode(toMap());
 
   factory InQruDetails.fromJson(String source) => InQruDetails.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class QruLiveKit {
+
+  Timestamp? createdAt;
+  String? roomName;
+  String? serverUrl;
+  String? token;
+
+  QruLiveKit({
+    this.createdAt,
+    this.roomName,
+    this.serverUrl,
+    this.token,
+  });
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'createdAt': createdAt,
+      'roomName': roomName,
+      'serverUrl': serverUrl,
+      'token': token,
+    };
+  }
+
+  factory QruLiveKit.fromMap(Map<String, dynamic> map) {
+    return QruLiveKit(
+      createdAt: map['createdAt'] != null ? map['createdAt'] as Timestamp : null,
+      roomName: map['roomName'] != null ? map['roomName'] as String : null,
+      serverUrl: map['serverUrl'] != null ? map['serverUrl'] as String : null,
+      token: map['token'] != null ? map['token'] as String : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory QruLiveKit.fromJson(String source) => QruLiveKit.fromMap(json.decode(source) as Map<String, dynamic>);
 }
