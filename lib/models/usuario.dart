@@ -431,7 +431,7 @@ class Plan {
 
 List<Plan> planos = [
   Plan(name: "Gratuito", dueDate: Timestamp.now(), price: 0),
-  Plan(name: "Profissional", dueDate: Timestamp.now(), price: 19.90),
+  Plan(name: "Profissional", dueDate: Timestamp.now(), price: 34.90),
 ];
 
 class PhoneData {
