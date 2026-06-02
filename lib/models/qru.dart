@@ -198,12 +198,14 @@ class QruLiveKit {
   String? roomName;
   String? serverUrl;
   String? token;
+  bool? active;
 
   QruLiveKit({
     this.createdAt,
     this.roomName,
     this.serverUrl,
     this.token,
+    this.active,
   });
 
 
@@ -213,6 +215,7 @@ class QruLiveKit {
       'roomName': roomName,
       'serverUrl': serverUrl,
       'token': token,
+      'active' : active,
     };
   }
 
@@ -222,6 +225,7 @@ class QruLiveKit {
       roomName: map['roomName'] != null ? map['roomName'] as String : null,
       serverUrl: map['serverUrl'] != null ? map['serverUrl'] as String : null,
       token: map['token'] != null ? map['token'] as String : null,
+      active: map['active'] != null ? map['active'] as bool : null,
     );
   }
 
